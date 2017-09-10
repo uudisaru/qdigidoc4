@@ -20,7 +20,7 @@
 #include "ContainerPage.h"
 #include "ui_ContainerPage.h"
 #include "Styles.h"
-#include "widgets/ContainerItem.h"
+#include "widgets/ItemWidget.h"
 
 using namespace ria::qdigidoc4;
 
@@ -70,6 +70,7 @@ void ContainerPage::transition(ContainerState state)
         hideRightPane();
         ui->leftPane->init(ItemList::File, "Allkirjastamiseks valitud failid");
         ui->mainAction->init( SignatureAdd );
+        ui->mainAction->setText( "Allkirjasta ID-Kaardiga" );
         for(LabelButton *button: {ui->cancel, ui->save, ui->mainAction })
         {
             button->show();
@@ -96,6 +97,18 @@ void ContainerPage::transition(ContainerState state)
         break;
 
     case UnencryptedContainer:
+        ui->leftPane->init(ItemList::File, "Krüpteerimiseks valitud failid");
+        showRightPane(ItemList::Address, "Adressaadid");
+        ui->mainAction->init( AddressAdd );
+        ui->mainAction->setText( "Krüpteeri" );
+        for(LabelButton *button: {ui->cancel, ui->mainAction })
+        {
+            button->show();
+        }
+        for(LabelButton *button: {ui->encrypt, ui->navigateToContainer, ui->email })
+        {
+            button->hide();
+        }
         break;
     case EncryptedContainer:
         break;

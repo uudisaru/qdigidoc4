@@ -150,9 +150,13 @@ void MainWindow::navigateToPage( Pages page )
 {
     ui->startScreen->setCurrentIndex(page);
 
-    if ( page == SignDetails)
+    if( page == SignDetails )
     {
         ui->signContainerPage->transition(ContainerState::UnsignedContainer);
+    }
+    else if( page == CryptoDetails )
+    {
+        ui->cryptoContainerPage->transition(ContainerState::UnencryptedContainer);
     }
 }
 
