@@ -40,4 +40,12 @@ AddressItem::~AddressItem()
 
 void AddressItem::stateChange(ContainerState state)
 {
+    if( state == UnencryptedContainer )
+    {
+        ui->remove->show();
+    }
+    else
+    {
+        ui->remove->hide();
+    }
 }

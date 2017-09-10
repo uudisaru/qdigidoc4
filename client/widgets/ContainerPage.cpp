@@ -71,14 +71,8 @@ void ContainerPage::transition(ContainerState state)
         ui->leftPane->init(ItemList::File, "Allkirjastamiseks valitud failid");
         ui->mainAction->init( SignatureAdd );
         ui->mainAction->setText( "Allkirjasta ID-Kaardiga" );
-        for(LabelButton *button: {ui->cancel, ui->save, ui->mainAction })
-        {
-            button->show();
-        }
-        for(LabelButton *button: {ui->encrypt, ui->navigateToContainer, ui->email })
-        {
-            button->hide();
-        }
+        showButtons( {ui->cancel, ui->save, ui->mainAction} );
+        hideButtons( {ui->encrypt, ui->navigateToContainer, ui->email} );
         break;
     case UnsignedSavedContainer:
         break;
@@ -86,40 +80,41 @@ void ContainerPage::transition(ContainerState state)
         ui->leftPane->init(ItemList::File, "Kontaineri failid");
         showRightPane(ItemList::Signature, "Kontaineri allkirjad");
         ui->rightPane->add(SignatureAdd);
-        for(LabelButton *button: {ui->cancel, ui->save, ui->mainAction })
-        {
-            button->hide();
-        }
-        for(LabelButton *button: {ui->encrypt, ui->navigateToContainer, ui->email })
-        {
-            button->show();
-        }
+        hideButtons( {ui->cancel, ui->save, ui->mainAction} );
+        showButtons( {ui->encrypt, ui->navigateToContainer, ui->email} );
         break;
-
     case UnencryptedContainer:
         ui->leftPane->init(ItemList::File, "Krüpteerimiseks valitud failid");
         showRightPane(ItemList::Address, "Adressaadid");
-        ui->mainAction->init( AddressAdd );
+        ui->mainAction->init( ContainerCancel );
         ui->mainAction->setText( "Krüpteeri" );
-        for(LabelButton *button: {ui->cancel, ui->mainAction })
-        {
-            button->show();
-        }
-        for(LabelButton *button: {ui->encrypt, ui->navigateToContainer, ui->email })
-        {
-            button->hide();
-        }
+        showButtons( {ui->cancel, ui->mainAction} );
+        hideButtons( {ui->encrypt, ui->save, ui->navigateToContainer, ui->email} );
         break;
     case EncryptedContainer:
+        ui->leftPane->init(ItemList::File, "Krüpteeritud failid");
+        showRightPane(ItemList::Address, "Adressaadid");
+        hideButtons( {ui->encrypt, ui->cancel, ui->save, ui->mainAction} );
+        showButtons( {ui->navigateToContainer, ui->email} );
         break;
     case DecryptedContainer:
         break;
     }
 }
 
+void ContainerPage::hideButtons( std::vector<QWidget*> buttons )
+{
+    for(auto *button: buttons) button->hide();
+}
+
 void ContainerPage::hideRightPane()
 {
     ui->rightPane->hide();
+}
+
+void ContainerPage::showButtons( std::vector<QWidget*> buttons )
+{
+    for(auto *button: buttons) button->show();
 }
 
 void ContainerPage::showRightPane(ItemList::ItemType itemType, const QString &header)
