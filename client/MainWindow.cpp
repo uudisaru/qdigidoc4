@@ -25,7 +25,9 @@
 #include "sslConnect.h"
 #include "Styles.h"
 #include "XmlReader.h"
-#include "widgets/FadeInNotification.h"
+#include "dialogs/PinPopup.h"
+#include "effects/FadeInNotification.h"
+#include "effects/Overlay.h"
 
 #include <common/SslCertificate.h>
 #include <common/DateTime.h>
@@ -132,9 +134,18 @@ void MainWindow::buttonClicked( int button )
 		showWarning( "Not implemented yet" );
         break;
     case HeadSettings:
+    {
         // qApp->showSettings();
-		showWarning( "Not implemented yet" );
+        setEnabled(false);
+        Overlay overlay(this);
+        overlay.show();
+        PinPopup popup(PinDialog::Pin1Type, "", 0, this);
+        popup.exec();
+        overlay.close();
+        setEnabled(true);
+		// showWarning( "Not implemented yet" );
         break;
+    }
     default: 
         break;
     }
@@ -175,7 +186,7 @@ void MainWindow::onSignAction( int action )
 
 void MainWindow::onCryptoAction( int action )
 {
-    if( action == EncryptedContainer )
+    if( action == EncryptContainer )
     {
         ui->cryptoContainerPage->transition(ContainerState::EncryptedContainer);
 
