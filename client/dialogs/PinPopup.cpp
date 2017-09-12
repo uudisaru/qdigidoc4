@@ -20,6 +20,7 @@
 #include "PinPopup.h"
 #include "ui_PinPopup.h"
 #include "Styles.h"
+#include "effects/Overlay.h"
 
 #include <common/Common.h>
 #include <common/SslCertificate.h>
@@ -132,7 +133,19 @@ void PinPopup::init( PinDialog::PinFlags flags, const QString &title, TokenData:
 	}
 }
 
+QString PinPopup::text() const { return ui->pin->text(); }
+
 void PinPopup::textEdited( const QString &text )
 { 
     ui->ok->setEnabled( regexp.exactMatch( text ) ); 
+}
+
+int PinPopup::exec()
+{ 
+    Overlay overlay(parentWidget());
+    overlay.show();
+    auto rc = QDialog::exec();
+    overlay.close();
+
+    return rc;
 }

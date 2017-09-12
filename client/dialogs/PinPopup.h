@@ -40,6 +40,9 @@ public:
 
 	~PinPopup();
 
+    int exec() override;
+    QString text() const;
+
 signals:
 	void startTimer();
 
