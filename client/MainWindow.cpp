@@ -32,7 +32,6 @@
 #include <common/DateTime.h>
 
 #include <QDebug>
-#include <QIcon>
 #include <QtNetwork/QSslConfiguration>
 
 using namespace ria::qdigidoc4;

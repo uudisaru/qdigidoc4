@@ -32,7 +32,6 @@ NoCardInfo::NoCardInfo( QWidget *parent )
     cardIcon->resize( 39, 39 );
     cardIcon->move( 0, 1 );
     cardIcon->load( QString(":/images/eid.svg") );
-    cardIcon->show();
 }
 
 NoCardInfo::~NoCardInfo()

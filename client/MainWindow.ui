@@ -170,7 +170,7 @@ background-color: #023664;</string>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-image: url(:/images/logo.svg);
+          <string notr="true">background-image: url(:/images/coatOfArms.svg);
 border: none;</string>
          </property>
         </widget>

@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/images" >
+        <file>coatOfArms.svg</file>
         <file>crypto_dark.svg</file>
         <file>crypto_light.svg</file>
         <file>digidoc_icon_128x128.png</file>
@@ -7,7 +8,6 @@
         <file>download_23x23.svg</file>
         <file>eid.svg</file>
         <file>help.svg</file>
-        <file>logo.svg</file>
         <file>my_eid_dark.svg</file>
         <file>my_eid_light.svg</file>
         <file>settings.svg</file>
