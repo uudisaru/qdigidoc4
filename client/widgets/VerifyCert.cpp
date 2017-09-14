@@ -58,7 +58,7 @@ void VerifyCert::update(bool isValid, const QString &name, const QString &validU
 
 	ui->name->setText(name);
 	ui->validUntil->setText(validUntil);
-	ui->errorBox->setVisible(!isValid);
+	ui->error->setVisible(!isValid);
 	ui->error->setText(error);
 	ui->changePIN->setText(change);
 
