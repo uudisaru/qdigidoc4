@@ -134,9 +134,9 @@
   <widget class="QWidget" name="cardIcon" native="true">
    <property name="geometry">
     <rect>
-     <x>153</x>
+     <x>152</x>
      <y>23</y>
-     <width>22</width>
+     <width>23</width>
      <height>22</height>
     </rect>
    </property>
