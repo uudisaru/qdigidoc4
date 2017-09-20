@@ -298,13 +298,13 @@ void MainWindow::noReader_NoCard_Loading_Event( const QString &text, bool isLoad
 				"",
 				"",
 				"");
+	ui->cardInfo->clearPicture();
 	ui->infoStack->clearPicture();
 	ui->accordion->hide();
 	ui->accordion->updateOtherData( false );
 }
 
 // Loads picture 
-// Somehow in Win environment it seems does not load correct data, so picture is not shown. Oleg.
 void MainWindow::loadCardPhoto ()
 {
 	QByteArray buffer = sendRequest( SSLConnect::PictureInfo );
