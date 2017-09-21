@@ -22,6 +22,7 @@
 #include "common_enums.h"
 #include "QSmartCard.h"
 #include "sslConnect.h"
+#include "dialogs/AddRecipients.h"
 #include "widgets/PageIcon.h"
 #include "widgets/AccordionTitle.h"
 

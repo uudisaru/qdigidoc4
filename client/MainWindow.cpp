@@ -197,9 +197,20 @@ void MainWindow::onCryptoAction( int action )
 	{
 		navigateToPage(Pages::CryptoIntro);
 	}
-	else if( action == FileRemove )
+//	else if( action == FileRemove )
+//	{
+//	}
+	else if( action == 0 )
 	{
-
+		AddRecipients *dlg = new AddRecipients(this);
+		dlg->exec();
+		delete dlg;
+	}
+	else
+	{
+		QMessageBox msgBox;
+		msgBox.setText(QString("Signal %1 not implemented.").arg(action));
+		msgBox.exec();
 	}
 }
 
@@ -259,7 +270,7 @@ void MainWindow::showCardStatus()
 	}
 	else if( t.card().isEmpty() && !t.readers().isEmpty() )
 	{
-		noReader_NoCard_Loading_Event( "Lugejas ei ole kaarti. Kontrolli, kas ID-kaart on õiget pidi lugejas." );
+		noReader_NoCard_Loading_Event( "Lugejas ei ole kaarti. Kontrolli, kas ID-kaart on õiget pidi lugejas." );
 	}
 	else
 	{

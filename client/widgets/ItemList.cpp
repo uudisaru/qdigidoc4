@@ -61,6 +61,8 @@ void ItemList::add(int code)
 	ui->itemLayout->insertWidget(items.size(), item);
 	item->show();
 	items.push_back(item);
+
+	emit addItem( code );
 }
 
 QString ItemList::addLabel() const

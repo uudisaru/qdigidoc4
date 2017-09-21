@@ -17,48 +17,27 @@
  *
  */
 
-#ifndef ITEMLIST_H
-#define ITEMLIST_H
+#pragma once
 
 #include "common_enums.h"
-#include "widgets/StyledWidget.h"
-
-#include <QWidget>
+#include <QDialog>
 
 namespace Ui {
-class ItemList;
+class AddRecipients;
 }
 
-class ItemList : public QWidget
+class AddRecipients : public QDialog
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	enum ItemType {
-		File,
-		Signature,
-		Address
-	};
+    explicit AddRecipients(QWidget *parent = 0);
+    ~AddRecipients();
 
-	explicit ItemList(QWidget *parent = 0);
-	virtual ~ItemList();
-
-	void init(ItemType itemType, const QString &header);
-	void add(int code);
-	void clear();
-	void stateChange(ria::qdigidoc4::ContainerState state);
-
-signals:
-	void addItem(int code);
+	int exec() override;
 
 private:
-	QString addLabel() const;
-	QString anchor() const;
+    void init();
 
-	Ui::ItemList* ui;
-	ria::qdigidoc4::ContainerState state;
-	ItemType itemType;
-	std::vector<StyledWidget*> items;
+    Ui::AddRecipients *ui;
 };
-
-#endif // ITEMLIST_H
