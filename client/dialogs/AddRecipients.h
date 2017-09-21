@@ -22,6 +22,9 @@
 #include "common_enums.h"
 #include <QDialog>
 
+#include "widgets/AddressItem.h"
+
+
 namespace Ui {
 class AddRecipients;
 }

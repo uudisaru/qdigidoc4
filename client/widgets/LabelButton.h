@@ -33,12 +33,16 @@ class LabelButton : public QLabel
 
 public:
     enum ButtonStyle {
-        Mojo = (1 << 0),
-        DeepCerulean = (1 << 1),
-        WhiteBackground = (1 << 2),
-        AlabasterBackground = (1 << 3),
-        PorcelainBackground = (1 << 4)
-    };
+		Mojo                = (1 << 0),
+		DeepCerulean        = (1 << 1),
+		WhiteForeground     = (1 << 3),
+
+		WhiteBackground     = (1 << 4),
+		AlabasterBackground = (1 << 5),
+		BlueBackground      = (1 << 6),
+		PorcelainBackground = (1 << 7),
+		RedBackground       = (1 << 8)
+	};
 
     explicit LabelButton(QWidget *parent = nullptr);
 

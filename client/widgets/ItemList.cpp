@@ -62,7 +62,17 @@ void ItemList::add(int code)
 	item->show();
 	items.push_back(item);
 
-	emit addItem( code );
+	if(code != SignatureAdd)  // !!! Et SignatureAdd ei läheks lõpmatusse tsüklisse.
+		emit addItem( code );
+}
+
+void ItemList::addWidget(StyledWidget *widget)
+{
+	ui->itemLayout->insertWidget(items.size(), widget);
+	widget->show();
+	items.push_back(widget);
+
+	//emit addItem( code );
 }
 
 QString ItemList::addLabel() const
@@ -71,6 +81,7 @@ QString ItemList::addLabel() const
 	{
 	case File: return "+ LISA VEEL FAILE";
 	case Address: return "+ LISA ADRESSAAT";
+	case All: return "+ LISA KÕIK";
 	default: return "";
 	}
 }
@@ -109,7 +120,6 @@ void ItemList::init( ItemType item, const QString &header)
 	else
 	{
 		ui->add->init(LabelButton::DeepCerulean | LabelButton::WhiteBackground, addLabel(), itemType == File ? FileAdd : AddressAdd);
-		ui->add->setFont(Styles::font(Styles::Condensed, 12));
 	}
 }
 

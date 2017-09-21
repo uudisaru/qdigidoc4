@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>465</width>
+    <width>631</width>
     <height>44</height>
    </rect>
   </property>
@@ -34,12 +34,12 @@
   </property>
   <property name="styleSheet">
    <string notr="true">border: solid rgba(217, 217, 216, 0.45);
-border-width: 0px 0px 2px 0px; 
-background-color: #ffffff; 
-color: #000000; 
+border-width: 0px 0px 2px 0px;
+background-color: #ffffff;
+color: #000000;
 text-decoration: none solid rgb(0, 0, 0);</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0">
+  <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0,0">
    <property name="spacing">
     <number>0</number>
    </property>
@@ -303,6 +303,32 @@ text-decoration: none solid rgb(0, 0, 0);</string>
        <width>15</width>
        <height>15</height>
       </size>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QToolButton" name="add">
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: #006EB5;	
+font-family: Roboto Condensed;
+font-size: 12px;</string>
+     </property>
+     <property name="text">
+      <string>LISA</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QToolButton" name="added">
+     <property name="styleSheet">
+      <string notr="true">border: none;
+color: #75787B;
+font-family: Roboto Condensed;
+font-size: 12px;</string>
+     </property>
+     <property name="text">
+      <string>LISATUD</string>
      </property>
     </widget>
    </item>

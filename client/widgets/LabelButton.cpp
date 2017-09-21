@@ -58,11 +58,15 @@ QString LabelButton::background(int style) const
 {
     if ( style & WhiteBackground ) {
         return "#ffffff";
-    } else if( style & AlabasterBackground ) {
-        return "#fafafa";
-    } else if( style & PorcelainBackground ) {
-        return "#f4f5f6";
-    } else {
+	} else if( style & AlabasterBackground ) {
+		return "#fafafa";
+	} else if( style & BlueBackground ) {
+		return "#006eb5";
+	} else if( style & PorcelainBackground ) {
+		return "#f4f5f6";
+	} else if( style & RedBackground ) {
+		return "#981E32";
+	} else {
         return "#f7f7f7";
     }
 }
@@ -71,9 +75,11 @@ QString LabelButton::foreground(int style) const
 {
     if (style & Mojo) {
         return "#c53e3e";
-    } else {
-        return "#006eb5";
-    }
+	} else if (style & WhiteForeground) {
+		return "#ffffff";
+	} else {
+		return "#006eb5";
+	}
 }
 
 void LabelButton::enterEvent( QEvent *ev )

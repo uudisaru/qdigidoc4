@@ -31,12 +31,76 @@ AddressItem::AddressItem(ContainerState state, QWidget *parent)
 	ui->name->setFont( Styles::font( Styles::Regular, 14, QFont::DemiBold ) );
 	ui->code->setFont( Styles::font( Styles::Regular, 14 ) );
 	ui->idType->setFont( Styles::font( Styles::Regular, 11 ) );
+
+	ui->add->hide();
+	ui->added->hide();
 }
 
 AddressItem::~AddressItem()
 {
 	delete ui;
 }
+
+void AddressItem::update(const QString& name, const QString& code, const QString& type, int act)
+{
+	ui->name->setText( name );
+	ui->code->setText( code );
+	ui->idType->setText( type );
+
+	ui->added->setEnabled(false);
+
+	switch (act) {
+	case 1:
+		setStyleSheet(
+					"border: solid rgba(217, 217, 216, 0.45);"
+					"border-width: 0px 0px 2px 0px;"
+					"background-color: #ffffff;"
+					"color: #000000;"
+					"text-decoration: none solid rgb(0, 0, 0);"
+					);
+		ui->remove->show();
+		ui->add->hide();
+		ui->added->hide();
+		break;
+	case 2:
+		setStyleSheet(
+					"border: solid rgba(217, 217, 216, 0.45);"
+					"border-width: 0px 0px 2px 0px;"
+					"background-color: #ffffff;"
+					"color: #000000;"
+					"text-decoration: none solid rgb(0, 0, 0);"
+					);
+		ui->remove->hide();
+		ui->add->show();
+		ui->added->hide();
+		break;
+	case 3:
+		setStyleSheet(
+					"border: solid rgba(217, 217, 216, 0.45);"
+					"border-width: 0px 0px 2px 0px;"
+					"background-color: #f0f0f0;"
+					"color: #000000;"
+					"text-decoration: none solid rgb(0, 0, 0);"
+					);
+		ui->remove->hide();
+		ui->add->hide();
+		ui->added->show();
+		break;
+	default:
+		setStyleSheet(
+					"border: solid rgba(217, 217, 216, 0.45);"
+					"border-width: 0px 0px 2px 0px;"
+					"background-color: #ffffff;"
+					"color: #000000;"
+					"text-decoration: none solid rgb(0, 0, 0);"
+					);
+		ui->remove->hide();
+		ui->add->hide();
+		ui->added->hide();
+		break;
+	}
+}
+
 
 void AddressItem::stateChange(ContainerState state)
 {

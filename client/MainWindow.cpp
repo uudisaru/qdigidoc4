@@ -182,6 +182,7 @@ void MainWindow::onSignAction( int action )
 	{
 
 	}
+
 }
 
 void MainWindow::onCryptoAction( int action )
@@ -197,21 +198,22 @@ void MainWindow::onCryptoAction( int action )
 	{
 		navigateToPage(Pages::CryptoIntro);
 	}
-//	else if( action == FileRemove )
-//	{
-//	}
-	else if( action == 0 )
+	else if( action == FileRemove )
+	{
+
+	}
+	else if( action == AddressAdd )
 	{
 		AddRecipients *dlg = new AddRecipients(this);
 		dlg->exec();
 		delete dlg;
 	}
-	else
-	{
-		QMessageBox msgBox;
-		msgBox.setText(QString("Signal %1 not implemented.").arg(action));
-		msgBox.exec();
-	}
+//	else
+//	{
+//		QMessageBox msgBox;
+//		msgBox.setText(QString("Signal %1 not implemented.").arg(action));
+//		msgBox.exec();
+//	}
 }
 
 void MainWindow::showCardStatus()

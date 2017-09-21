@@ -37,7 +37,8 @@ public:
 	enum ItemType {
 		File,
 		Signature,
-		Address
+		Address,
+		All
 	};
 
 	explicit ItemList(QWidget *parent = 0);
@@ -45,6 +46,7 @@ public:
 
 	void init(ItemType itemType, const QString &header);
 	void add(int code);
+	void addWidget(StyledWidget *widget);
 	void clear();
 	void stateChange(ria::qdigidoc4::ContainerState state);
 
