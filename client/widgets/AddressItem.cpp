@@ -32,7 +32,10 @@ AddressItem::AddressItem(ContainerState state, QWidget *parent)
 	ui->code->setFont( Styles::font( Styles::Regular, 14 ) );
 	ui->idType->setFont( Styles::font( Styles::Regular, 11 ) );
 
+	ui->add->init();
 	ui->add->hide();
+
+	ui->added->init(ColoredButton::Common, false);
 	ui->added->hide();
 }
 
@@ -49,51 +52,43 @@ void AddressItem::update(const QString& name, const QString& code, const QString
 
 	ui->added->setEnabled(false);
 
+	if(act == 3)
+	{
+		setStyleSheet(
+					"border-bottom: 2px solid #D9D9D8;"
+					"background-color: #f0f0f0;"
+					);
+		ui->name->setStyleSheet("color: #75787B;");
+		ui->code->setStyleSheet("color: #75787B;");
+	}
+	else
+	{
+		setStyleSheet(
+					"border-bottom: 2px solid #D9D9D8;"
+					"background-color: #ffffff;"
+					);
+		ui->name->setStyleSheet("color: #363739;");
+		ui->code->setStyleSheet("color: #363739;");
+	}
+
+
 	switch (act) {
 	case 1:
-		setStyleSheet(
-					"border: solid rgba(217, 217, 216, 0.45);"
-					"border-width: 0px 0px 2px 0px;"
-					"background-color: #ffffff;"
-					"color: #000000;"
-					"text-decoration: none solid rgb(0, 0, 0);"
-					);
 		ui->remove->show();
 		ui->add->hide();
 		ui->added->hide();
 		break;
 	case 2:
-		setStyleSheet(
-					"border: solid rgba(217, 217, 216, 0.45);"
-					"border-width: 0px 0px 2px 0px;"
-					"background-color: #ffffff;"
-					"color: #000000;"
-					"text-decoration: none solid rgb(0, 0, 0);"
-					);
 		ui->remove->hide();
 		ui->add->show();
 		ui->added->hide();
 		break;
 	case 3:
-		setStyleSheet(
-					"border: solid rgba(217, 217, 216, 0.45);"
-					"border-width: 0px 0px 2px 0px;"
-					"background-color: #f0f0f0;"
-					"color: #000000;"
-					"text-decoration: none solid rgb(0, 0, 0);"
-					);
 		ui->remove->hide();
 		ui->add->hide();
 		ui->added->show();
 		break;
 	default:
-		setStyleSheet(
-					"border: solid rgba(217, 217, 216, 0.45);"
-					"border-width: 0px 0px 2px 0px;"
-					"background-color: #ffffff;"
-					"color: #000000;"
-					"text-decoration: none solid rgb(0, 0, 0);"
-					);
 		ui->remove->hide();
 		ui->add->hide();
 		ui->added->hide();
