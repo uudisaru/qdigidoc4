@@ -49,6 +49,7 @@ public:
 	void addWidget(StyledWidget *widget);
 	void clear();
 	void stateChange(ria::qdigidoc4::ContainerState state);
+	void setAddLabel(bool visible, const QString &label = "");
 
 signals:
 	void addItem(int code);

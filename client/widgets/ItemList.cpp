@@ -123,6 +123,20 @@ void ItemList::init( ItemType item, const QString &header)
 	}
 }
 
+void ItemList::setAddLabel(bool visible, const QString &label)
+{
+	ui->add->setText(label);
+	ui->add->setAlignment(Qt::AlignCenter | Qt::AlignRight);
+	if(visible)
+	{
+		ui->add->show();
+	}
+	else
+	{
+		ui->add->hide();
+	}
+}
+
 void ItemList::stateChange(ContainerState state)
 {
 	this->state = state;

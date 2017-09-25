@@ -58,6 +58,7 @@ void AddRecipients::init()
 	add2->update( "Alma Tamm", "44510104561", "Digi-ID", 3 );
 	ui->toAdd->addWidget( add1 );
 	ui->toAdd->addWidget( add2 );
+	ui->toAdd->setAddLabel(true, "LISA KÕIK");
 
 	ui->added->init( ItemList::Address, "Lisatud adressaadid" );
 	AddressItem *curr1 = new AddressItem(UnsignedContainer, 0);
@@ -69,6 +70,7 @@ void AddRecipients::init()
 	ui->added->addWidget( curr2 );
 	ui->added->addWidget( curr1 );
 	ui->added->addWidget( curr3 );
+	ui->added->setAddLabel(false);
 
 	ui->fromCard->init();
 	ui->fromFile->init();

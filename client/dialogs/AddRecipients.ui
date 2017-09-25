@@ -10,6 +10,12 @@
     <height>480</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="minimumSize">
    <size>
     <width>880</width>
@@ -326,15 +332,15 @@ color: #FFFFFF;
  </widget>
  <customwidgets>
   <customwidget>
+   <class>ColoredButton</class>
+   <extends>QLabel</extends>
+   <header>widgets/ColoredButton.h</header>
+  </customwidget>
+  <customwidget>
    <class>ItemList</class>
    <extends>QWidget</extends>
    <header>widgets/ItemList.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>ColoredButton</class>
-   <extends>QLabel</extends>
-   <header>widgets/ColoredButton.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
