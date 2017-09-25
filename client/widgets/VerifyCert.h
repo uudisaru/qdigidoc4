@@ -31,7 +31,7 @@ class VerifyCert : public StyledWidget
 	Q_OBJECT
 
 public:
-	explicit VerifyCert( QWidget *parent = 0 );
+	explicit VerifyCert( QWidget *parent = nullptr );
 	~VerifyCert();
 
 	void update( QSmartCardData::PinType type, const QSmartCard *smartCard );
@@ -39,11 +39,13 @@ public:
 	void addBorders();
 
 protected:
-	void enterEvent(QEvent * event) override;
-	void leaveEvent(QEvent * event) override;
+	void enterEvent( QEvent * event ) override;
+	void leaveEvent( QEvent * event ) override;
 	void processClickedBtn();
 
 private:
+	void changePinStyle( const QString &background ); 
+
 	Ui::VerifyCert *ui;
 
 	bool isValidCert;

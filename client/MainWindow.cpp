@@ -410,7 +410,7 @@ void MainWindow::noReader_NoCard_Loading_Event( const QString &text, bool isLoad
 	}
     else
 	{
-		ui->noCardInfo->hide();
+		ui->noCardInfo->show();
 		ui->cardInfo->update( "", "", text );
 		ui->cardInfo->setAccessibleDescription( text );
 		Application::setOverrideCursor( Qt::BusyCursor );

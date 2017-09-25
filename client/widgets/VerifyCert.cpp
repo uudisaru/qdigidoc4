@@ -46,6 +46,8 @@ VerifyCert::VerifyCert( QWidget *parent ) :
 	ui->details->setFont( regular12 );
 	ui->changePIN->setFont( Styles::font( Styles::Condensed, 14 ) );
 	borders = " border: solid #DFE5E9; border-width: 1px 0px 0px 0px; ";
+
+//	connect( ui->changePIN, &QPushButton::clicked, this, [this](){ emit changePinClicked(); } );
 }
 
 VerifyCert::~VerifyCert()
@@ -131,16 +133,15 @@ void VerifyCert::update( const QString &name, const QString &validUntil, const Q
 {
 	if( !isValidCert && pinType != QSmartCardData::PukType )
 	{
-		this->setStyleSheet(
-					"opacity: 0.25;"
-					"background-color: #F9EBEB;"  + borders );
+		this->setStyleSheet( "opacity: 0.25; background-color: #F9EBEB;"  + borders );
 		ui->verticalSpacerAboveBtn->changeSize( 20, 8 );
 		ui->verticalSpacerBelowBtn->changeSize( 20, 6 );
-		ui->changePIN->setStyleSheet(
-					"background-color: #53c964;"
-					"border-color: #53c964;"
-					"color: #ffffff;"
-					);
+		ui->changePIN->setStyleSheet( 
+					"QPushButton { border-radius: 2px; border: none; color: #ffffff; background-color: #006EB5;}" 
+					"QPushButton:pressed { background-color: #41B6E6;}" 
+					"QPushButton:hover:!pressed { background-color: #008DCF;}" 
+					"QPushButton:disabled { background-color: #BEDBED;};" 
+					); 
 		ui->error->setStyleSheet(
 					"padding: 6px 6px 6px 6px;"
 					"line-height: 14px;"
@@ -156,16 +157,15 @@ void VerifyCert::update( const QString &name, const QString &validUntil, const Q
 	}
 	else if( isBlockedPin )
 	{
-		this->setStyleSheet(
-					"opacity: 0.25;"
-					"background-color: #fbecd0;"  + borders );
+		this->setStyleSheet( "opacity: 0.25; background-color: #fbecd0;"  + borders );
 		ui->verticalSpacerAboveBtn->changeSize( 20, 8 );
 		ui->verticalSpacerBelowBtn->changeSize( 20, 6 );
-		ui->changePIN->setStyleSheet(
-					"background-color: #006eb5;"
-					"color: #ffffff;"
-					"border-color: #006eb5;"
-					);
+		ui->changePIN->setStyleSheet( 
+					"QPushButton { border-radius: 2px; border: none; color: #ffffff; background-color: #006EB5;}" 
+					"QPushButton:pressed { background-color: #41B6E6;}" 
+					"QPushButton:hover:!pressed { background-color: #008DCF;}" 
+					"QPushButton:disabled { background-color: #BEDBED;};" 
+					); 
 		ui->error->setStyleSheet(
 					"padding: 6px 6px 6px 6px;"
 					"line-height: 14px;"
@@ -183,15 +183,7 @@ void VerifyCert::update( const QString &name, const QString &validUntil, const Q
 		this->setStyleSheet( "background-color: #ffffff;" + borders );
 		ui->verticalSpacerAboveBtn->changeSize( 20, 32 );
 		ui->verticalSpacerBelowBtn->changeSize( 20, 38 );
-		ui->changePIN->setStyleSheet(
-					"padding: 6px 9px;"
-                    "border: 1px;"
-                    "border-style: solid;"
-                    "border-radius: 2px;"
-					"border-color: #006eb5;"
-					"background-color: #ffffff;"
-					"color: #006eb5;"
- 					);
+		changePinStyle( "#FFFFFF" );
 		ui->name->setTextFormat( Qt::RichText );
 		ui->name->setText( name );
 	}
@@ -236,18 +228,34 @@ void VerifyCert::enterEvent( QEvent * event )
 	else if( isBlockedPin )
 		this->setStyleSheet( "background-color: #f9e2b9;" + borders );
 	else
+    {
 		this->setStyleSheet( "background-color: #f7f7f7;" + borders );
+		changePinStyle( "#f7f7f7" );  
+	}  
 }
 
-void VerifyCert::leaveEvent(QEvent * event)
+void VerifyCert::leaveEvent( QEvent * event )
 {
 	if( !isValidCert && pinType != QSmartCardData::PukType )
 		this->setStyleSheet( "background-color: #F9EBEB;" + borders );
 	else if( isBlockedPin )
 		this->setStyleSheet( "background-color: #fbecd0;" + borders );
 	else
+    {
 		this->setStyleSheet( "background-color: white;" + borders );
+		changePinStyle( "white" );  
+	}  
 }
+
+void VerifyCert::changePinStyle( const QString &background )  
+{  
+ 	ui->changePIN->setStyleSheet(  
+ 		QString("QPushButton { border-radius: 2px; border: 1px solid #006EB5; color: #006EB5; background-color: %1;}"  
+ 		"QPushButton:pressed { border: 1px solid #41B6E6; color: #41B6E6;}"  
+ 		"QPushButton:hover:!pressed { border: 1px solid #008DCF; color: #008DCF;}"  
+ 		"QPushButton:disabled { border: 1px solid #BEDBED; color: #BEDBED;};").arg( background )  
+ 		);  
+}  
 
 void VerifyCert::processClickedBtn()
 {
