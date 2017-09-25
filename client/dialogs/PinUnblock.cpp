@@ -46,7 +46,7 @@ void PinUnblock::init(PinDialog::PinFlags flags)
     setWindowFlags( Qt::Dialog | Qt::FramelessWindowHint );
     setWindowModality( Qt::ApplicationModal );
 
-    disableUnblock();
+    ui->unblock->setEnabled( false );
     connect( ui->unblock, &QPushButton::clicked, this, &PinUnblock::accept );
     connect( ui->cancel, &QPushButton::clicked, this, &PinUnblock::reject );
     connect( this, &PinUnblock::finished, this, &PinUnblock::close );
@@ -92,11 +92,9 @@ void PinUnblock::init(PinDialog::PinFlags flags)
     QFont headerFont( Styles::font( Styles::Regular, 18 ) );
     headerFont.setWeight( QFont::Bold );
     ui->labelNameId->setFont( headerFont );
-    ui->cancel->setFont( condensed14 );
     ui->unblock->setFont( condensed14 );
     ui->label->setFont( Styles::font( Styles::Regular, 14 ) );
     ui->labelPuk->setFont( Styles::font( Styles::Condensed, 12 ) );
-
 
     connect(ui->puk, &QLineEdit::textChanged, this,
                 [this](const QString &text)
@@ -127,7 +125,7 @@ void PinUnblock::setUnblockEnabled()
 {
     if(isPukOk)
     {
-        ui->iconLabelPuk->setStyleSheet("image: url(:/images/ok.png);");
+        ui->iconLabelPuk->setStyleSheet("image: url(:/images/icon_check.svg);");
     }
     else
     {
@@ -136,7 +134,7 @@ void PinUnblock::setUnblockEnabled()
 
     if(isPinOk)
     {
-        ui->iconLabelPin->setStyleSheet("image: url(:/images/ok.png);");
+        ui->iconLabelPin->setStyleSheet("image: url(:/images/icon_check.svg);");
     }
     else
     {
@@ -145,42 +143,14 @@ void PinUnblock::setUnblockEnabled()
 
     if(isRepeatOk)
     {
-        ui->iconLabelRepeat->setStyleSheet("image: url(:/images/ok.png);");
+        ui->iconLabelRepeat->setStyleSheet("image: url(:/images/icon_check.svg);");
     }
     else
     {
         ui->iconLabelRepeat->setStyleSheet("");
     }
 
-    if(isPukOk && isPinOk && isRepeatOk)
-    {
-        enableUnblock();
-    }
-    else
-    {
-        disableUnblock();
-    }
-}
-
-void PinUnblock::disableUnblock()
-{
-    ui->unblock->setEnabled(false);
-    // Opacity 25% applied on #006EB5
-    ui->unblock->setStyleSheet(
-                "border-radius: 2px;"
-                "background-color: #BFDBED;"
-                "color: #ffffff;"
-                );
-}
-
-void PinUnblock::enableUnblock()
-{
-    ui->unblock->setEnabled(true);
-    ui->unblock->setStyleSheet(
-                "border-radius: 2px;"
-                "background-color: #006EB5;"
-                "color: #ffffff;"
-            );
+    ui->unblock->setEnabled( isPukOk && isPinOk && isRepeatOk );
 }
 
 int PinUnblock::exec()

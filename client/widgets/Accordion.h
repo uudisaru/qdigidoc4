@@ -33,7 +33,7 @@ class Accordion : public StyledWidget
 	Q_OBJECT
 
 public:
-	explicit Accordion( QWidget *parent = 0 );
+	explicit Accordion( QWidget *parent = nullptr );
 	~Accordion();
 
 	void init();

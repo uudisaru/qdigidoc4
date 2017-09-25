@@ -30,7 +30,7 @@ class AddressItem : public StyledWidget
 	Q_OBJECT
 
 public:
-	explicit AddressItem(ria::qdigidoc4::ContainerState state, QWidget *parent = 0);
+	explicit AddressItem(ria::qdigidoc4::ContainerState state, QWidget *parent = nullptr);
 	~AddressItem();
 
 	void stateChange(ria::qdigidoc4::ContainerState state) override;
